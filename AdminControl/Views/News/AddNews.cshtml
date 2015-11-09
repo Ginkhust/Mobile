@@ -1,0 +1,49 @@
+﻿@using AdminControl.Models
+@model NewsViewModel
+@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+@section head {
+    @Styles.Render("~/Content/summernote")
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hpanel hgreen">
+                <div class="panel-heading hbuilt">
+                    <div class="panel-tools">
+                        <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    </div>
+                    Add News Daily
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("AddNews", "News", FormMethod.Post))
+                    {
+                        <label class="control-label">Title</label>
+                        @Html.TextBoxFor(n => n.title, new { @class = "form-control" })
+                        <br />
+                        <label class="control-label">Content</label>
+                        <div id="editor">
+                            @Html.TextAreaFor(n => n.content, new
+                       {
+                           @class = "form-control"
+                       })
+                        </div>
+                        <br />
+                        <br />
+                        <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/summernote",
+                    "~/Scripts/convert.js")
+}
+  

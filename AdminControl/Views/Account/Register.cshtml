@@ -1,0 +1,129 @@
+﻿@model AdminControl.Models.UserViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>Admin - Register</title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="~/Content/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="~/Content/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/vendor/xeditable/bootstrap3-editable/css/bootstrap-editable.css" />
+    <link rel="stylesheet" href="~/Content/vendor/select2-3.5.2/select2.css" />
+    <link rel="stylesheet" href="~/Content/vendor/select2-bootstrap/select2-bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="~/Content/vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="~/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="~/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="~/Content/styles/style.css">
+
+</head>
+<body class="blank">
+
+    <!-- Simple splash screen-->
+    <div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special AngularJS Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><img src="~/Images/loading-bars.svg" alt="loading" width="64" height="64" /> </div> </div>
+    <div class="color-line"></div>
+    <div class="register-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center m-b-md">
+                    <h3>Registration</h3>
+                </div>
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <form action="#" id="loginForm">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label>Username</label>
+                                    @Html.TextBoxFor(u => u.username, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>First Name</label>
+                                    @Html.TextBoxFor(u => u.firstName, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Last Name</label>
+                                    @Html.TextBoxFor(u => u.lastName, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Password</label>
+                                    @Html.PasswordFor(u => u.password, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Email Address</label>
+                                    @Html.TextBoxFor(u => u.email, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Birthday</label>
+                                    <div class="input-group date">
+                                        @Html.TextBoxFor(u => u.birthday, new { @class = "form-control" })
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-th"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <p style="font-weight:bold">Gender</p>
+                                    <div class="radio radio-info radio-inline">
+                                        @Html.RadioButtonFor(u => u.isMale, true, new { @id = "inlineRadio1" })
+                                        <label id="inlineRadio1">Male</label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        @Html.RadioButtonFor(u => u.isMale, false, new { @id = "inlineRadio2" })
+                                        <label id="inlineRadio2">Female</label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-success" style="width: 40%">REGISTER</button>
+                                <button class="btn btn-danger" style="width: 40%">CANCEL</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <strong>HOMER</strong> - AngularJS Responsive WebApp <br /> 2015 Copyright Company Name
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor scripts -->
+    <script src="~/Content/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Content/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="~/Content/vendor/iCheck/icheck.min.js"></script>
+    <script src="~/Content/vendor/sparkline/index.js"></script>
+
+    <script src="~/Content/vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script src="~/Content/vendor/select2-3.5.2/select2.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- App scripts -->
+    <script src="~/Scripts/homer.js"></script>
+    <script>
+        $(function () {
+            $('.input-group.date').datepicker({});
+        });
+    </script>
+</body>
+</html>
