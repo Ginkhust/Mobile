@@ -7,11 +7,12 @@ using System.Web.Mvc;
 using AdminControl.Models;
 using System.Threading.Tasks;
 using System.Web.Security;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
         [Authorize(Roles = "Admin, Manager, Shipper")]
         public async Task<ActionResult> CustomerList()

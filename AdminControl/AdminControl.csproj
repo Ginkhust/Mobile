@@ -214,6 +214,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\convert.js" />
+    <Content Include="Scripts\convert2.js" />
     <Content Include="Scripts\datePopUp.js" />
     <Content Include="Scripts\homer.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -252,6 +253,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BaseController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -294,6 +296,7 @@
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\User\Error.cshtml" />
+    <Content Include="Views\Product\ProductList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -303,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

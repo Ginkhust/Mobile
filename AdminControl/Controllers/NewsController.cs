@@ -7,11 +7,12 @@ using System.Web.Mvc;
 using AdminControl.Models;
 using System.Threading.Tasks;
 using System.Web.Security;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
         public async Task<ActionResult> NewsList()
         {
@@ -24,10 +25,7 @@ namespace AdminControl.Controllers
 
                 foreach (ParseObject n in newsList)
                 {
-                    NewsViewModel news = new NewsViewModel();
-                    news.newsId = n.ObjectId;
-                    news.title = n.Get<string>("title");
-                    news.content = n.Get<string>("content");
+                    NewsViewModel news = new NewsViewModel(n);
                     _newsList.Add(news);
                 }
                 return View(_newsList);
@@ -44,8 +42,7 @@ namespace AdminControl.Controllers
             return View();
         }
 
-        [ValidateInput(false)]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public async Task<ActionResult> AddNews(FormCollection form)
         {
             try
@@ -54,6 +51,7 @@ namespace AdminControl.Controllers
 
                 news["title"] = form["title"].ToString();
                 news["content"] = form["content"].ToString();
+                news["imageUrl"] = form["imageUrl"].ToString();
 
                 // Save new news
                 await news.SaveAsync();
@@ -65,17 +63,14 @@ namespace AdminControl.Controllers
             }
         }
 
+        [HttpGet]
         public async Task<ActionResult> EditNews(string id)
         {
             try
             {
-                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
-                ParseObject news = await query.GetAsync(id);
+                var news = await ParseObject.GetQuery("News").GetAsync(id);
 
-                NewsViewModel _news = new NewsViewModel();
-                _news.newsId = id;
-                _news.title = news.Get<string>("title");
-                _news.content = news.Get<string>("content");
+                NewsViewModel _news = new NewsViewModel(news);
 
                 return View(_news);
             }
@@ -85,17 +80,16 @@ namespace AdminControl.Controllers
             }
         }
 
-        [ValidateInput(false)]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public async Task<ActionResult> EditNews(string id, NewsViewModel n)
         {
             try
             {
-                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
-                ParseObject news = await query.GetAsync(n.newsId);
+                var news = await ParseObject.GetQuery("News").GetAsync(id);
 
                 news["title"] = n.title;
                 news["content"] = n.content;
+                news["imageUrl"] = n.imageUrl;
                 await news.SaveAsync();
                 return RedirectToAction("NewsList");
 
@@ -106,12 +100,11 @@ namespace AdminControl.Controllers
             }
         }
 
-        public async Task<ActionResult> DeleteNews(string nid)
+        public async Task<ActionResult> DeleteNews(string id)
         {
             try
             {
-                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
-                ParseObject news = await query.GetAsync(nid);
+                var news = await ParseObject.GetQuery("News").GetAsync(id);
 
                 await news.DeleteAsync();
                 return RedirectToAction("NewsList");

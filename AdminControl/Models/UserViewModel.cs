@@ -52,7 +52,8 @@ namespace AdminControl.Models
     {
         public string role { get; set; }
     }
-    enum UserType
+
+    public enum UserType
     {
         Admin,
         Manager,

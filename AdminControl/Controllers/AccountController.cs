@@ -5,10 +5,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Threading.Tasks;
 using AdminControl.Provider;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         // GET: Account
         public static List<Role> roles = new List<Role>();

@@ -26,6 +26,12 @@ namespace AdminControl
             );
 
             routes.MapRoute(
+                name: "EditNews",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "News", action = "EditNews", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "User",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "User", action = "UserList", id = UrlParameter.Optional }

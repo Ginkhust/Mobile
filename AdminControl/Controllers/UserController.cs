@@ -7,11 +7,12 @@ using System.Web.Security;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AdminControl.Models;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         public async Task<ActionResult> UserList()
         {
@@ -24,6 +25,10 @@ namespace AdminControl.Controllers
 
                 foreach (ParseUser p in users)
                 {
+                    if (p.Get<string>("username") == Session["login"].ToString())
+                    {
+                        continue;
+                    }
                     UserViewModel user = new UserViewModel();
                     user.userId = p.ObjectId;
                     user.username = p.Get<string>("username");

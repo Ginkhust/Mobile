@@ -12,35 +12,61 @@ namespace AdminControl.Models
     {
         public string productId { get; set; }
         public string name { get; set; }
-        public decimal price { get; set; }
+        public float price { get; set; }
         public int quantity { get; set; }
         public string manufacture { get; set; }
-        public decimal salePrice { get; set; }
-        public decimal oldPrice { get; set; }
+        public float salePrice { get; set; }
+        public float oldPrice { get; set; }
         public string thumbnailImage { get; set; }
         public IList<string> smallSlideImage { get; set; }
         public IList<string> largeSlideImage { get; set; }
 
-        public Specification specification { get; set; }
+        public Specification specification;
+
+        public void setSpecification(Specification spec)
+        {
+            specification = new Specification();
+            specification.specificationId = spec.specificationId;
+            specification.screen = spec.screen;
+            specification.frontCamera = spec.frontCamera;
+            specification.backCamera = spec.backCamera;
+            specification.os = spec.os;
+            specification.chipset = spec.chipset;
+            specification.cpu = spec.cpu;
+            specification.ram = spec.ram;
+            specification.internalStorage = spec.internalStorage;
+            specification.sdcard = spec.sdcard;
+            specification.simNumber = spec.simNumber;
+            specification.batery = spec.batery;
+            specification.connection = spec.connection;
+        }
+
+        public Specification getSpecification()
+        {
+            return specification;
+        }
+
+        public ProductViewModel() { }
 
         public ProductViewModel(ParseObject po)
         {
+
             productId = po.ObjectId;
             name = po.Get<string>("name");
-            price = po.Get<decimal>("price");
+            price = po.Get<float>("price");
             quantity = po.Get<int>("quantity");
             manufacture = po.Get<string>("manufacture");
-            salePrice = po.Get<decimal>("salePrice");
-            oldPrice = po.Get<decimal>("oldPrice");
+            salePrice = po.Get<float>("salePrice");
+            oldPrice = po.Get<float>("oldPrice");
             thumbnailImage = po.Get<string>("thumbnailImage");
             smallSlideImage = po.Get<IList<string>>("smallSlideImage");
             largeSlideImage = po.Get<IList<string>>("largeSlideImage");
-            
         }
     }
 
     public class Specification
     {
+        public Specification() { }
 
         public Specification(ParseObject specification)
         {

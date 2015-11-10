@@ -33,6 +33,10 @@
                            @class = "form-control"
                        })
                         </div>
+                        <div id="img">
+                            <label class="control-label">Thumbnail Image</label>
+                            @Html.TextAreaFor(n => n.imageUrl, new { @class = "form-control" })
+                        </div>
                         <br />
                         <br />
                         <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
@@ -44,6 +48,6 @@
 </div>
 @section scripts{
     @Scripts.Render("~/Scripts/summernote",
-                    "~/Scripts/convert.js")
+                    "~/Scripts/convert.js", "~/Scripts/convert2.js")
 }
-  
+

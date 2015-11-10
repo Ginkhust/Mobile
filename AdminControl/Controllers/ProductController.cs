@@ -4,31 +4,32 @@ using System.Threading.Tasks;
 using AdminControl.Models;
 using System.Collections.Generic;
 using System.Collections;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     [Authorize(Roles = "Admin, Manager")]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         public async Task<ActionResult> ProductList()
         {
             try
             {
                 ParseQuery<ParseObject> query = ParseObject.GetQuery("Product");
-                IEnumerable<ParseObject> productList = await query.FindAsync();
+                IEnumerable<ParseObject> products = await query.FindAsync();
 
-                List<ProductViewModel> _productList = new List<ProductViewModel>();
+                List<ProductViewModel> _products = new List<ProductViewModel>();
 
-                foreach (ParseObject p in productList)
+                foreach (ParseObject p in products)
                 {
+                    ProductViewModel product = new ProductViewModel(p);
+                    Specification sp = new Specification(await p.Get<ParseObject>("specification").FetchIfNeededAsync());
+                    product.setSpecification(sp);
 
-                    ProductViewModel model = new ProductViewModel(p);
-                    ParseQuery<ParseObject> q = ParseObject.GetQuery("Specification");
-                    ParseObject specification = await q.GetAsync(model.specification.specificationId);
-                    
+                    _products.Add(product);
                 }
 
-                return View();
+                return View(_products);
             }
             catch (ParseException pe)
             {
@@ -47,7 +48,6 @@ namespace AdminControl.Controllers
             try
             {
                 ParseObject spec = new ParseObject("Specification");
-                spec[""]
             }
             catch (ParseException pe)
             {

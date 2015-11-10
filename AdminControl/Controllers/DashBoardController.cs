@@ -1,10 +1,11 @@
 ﻿using Parse;
 using System.Web.Mvc;
+using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     
-    public class DashBoardController : Controller
+    public class DashBoardController : BaseController
     {
         // GET: DashBoard Admin
         [Authorize(Roles = "Admin")]
