@@ -6,10 +6,12 @@ using System.Web.Security;
 using System.Threading.Tasks;
 using AdminControl.Provider;
 using AdminControl.App_Start;
+using System;
+using System.Web;
 
 namespace AdminControl.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         // GET: Account
         public static List<Role> roles = new List<Role>();
@@ -33,6 +35,21 @@ namespace AdminControl.Controllers
             try
             {
                 var user = await ParseUser.LogInAsync(username, password);
+
+                if (model.rememberMe)
+                {
+                    var authTicket = new FormsAuthenticationTicket(
+                        1,
+                        username,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(20), // expiry
+                        model.rememberMe,
+                        "/"
+                    );
+                    HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+                    Response.Cookies.Add(cookie);
+                }
+
                 if (user != null)
                 {
                     GetUser getUser = new GetUser();
@@ -80,9 +97,59 @@ namespace AdminControl.Controllers
             return null;
         }
 
+        public async Task<ActionResult> Profiles()
+        {
+            if (Session["login"] != null && ParseUser.CurrentUser != null)
+            {
+                UserViewModel currentUser = new UserViewModel();
+                var user = await ParseUser.Query.WhereEqualTo("type", 1).GetAsync(ParseUser.CurrentUser.ObjectId);
+
+                currentUser.userId = user.ObjectId;
+                currentUser.username = user.Get<string>("username");
+                currentUser.firstName = user.Get<string>("firstName");
+                currentUser.lastName = user.Get<string>("lastName");
+                currentUser.phoneNumber = user.Get<string>("phoneNumber");
+                currentUser.address = user.Get<string>("address");
+                currentUser.birthday = user.Get<DateTime>("birthday");
+                currentUser.email = user.Get<string>("email");
+                currentUser.gender = user.Get<string>("gender");
+                currentUser.role = user.Get<string>("role");
+
+                return View(currentUser);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Profiles(FormCollection form)
+        {
+            if (Session["login"] != null && ParseUser.CurrentUser != null)
+            {
+                var user = await ParseUser.Query.WhereEqualTo("type", 1).GetAsync(ParseUser.CurrentUser.ObjectId);
+                user.Username = form["username"].ToString();
+                user.Password = form["password"].ToString();
+                user.Email = form["email"].ToString();
+                user["firstName"] = form["firstName"].ToString();
+                user["lastName"] = form["firstName"].ToString();
+                user["phoneNumber"] = form["phoneNumber"];
+                user["address"] = form["address"].ToString();
+                user["birthday"] = DateTime.Parse(form["birthday"].ToString());
+                user["gender"] = form["gender"].ToString();
+                user["role"] = form["role"].ToString();
+
+                await user.SaveAsync();
+            }
+            return RedirectToAction("CustomerList", "Customer");
+        }
+
         public ActionResult Logout()
         {
             Session["login"] = null;
+            ParseUser.LogOut();
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }

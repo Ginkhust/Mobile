@@ -12,7 +12,7 @@ using AdminControl.App_Start;
 namespace AdminControl.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class UserController : BaseController
+    public class UserController : Controller
     {
         public async Task<ActionResult> UserList()
         {
@@ -38,7 +38,7 @@ namespace AdminControl.Controllers
                     user.address = p.Get<string>("address");
                     user.birthday = p.Get<DateTime>("birthday");
                     user.email = p.Get<string>("email");
-                    user.isMale = p.Get<bool>("gender");
+                    user.gender = p.Get<string>("gender");
                     user.role = p.Get<string>("role");
 
                     // Add user model into list 
@@ -77,7 +77,7 @@ namespace AdminControl.Controllers
                 user["phoneNumber"] = form["phoneNumber"].ToString();
                 user["address"] = form["address"].ToString();
                 user["birthday"] = DateTime.Parse(form["birthday"].ToString());
-                user["gender"] = bool.Parse(form["isMale"]);
+                user["gender"] = bool.Parse(form["gender"]);
                 user["role"] = form["role"].ToString();
 
                 await user.SaveAsync();
@@ -86,62 +86,6 @@ namespace AdminControl.Controllers
             catch (ParseException pe)
             {
                 ViewBag.Error = "Error input form " + pe.Message + " ! Please retry";
-                return View();
-            }
-        }
-
-        public async Task<ActionResult> EditUser(string id)
-        {
-            try
-            {
-                var user = await ParseUser.Query.WhereEqualTo("type", 1).GetAsync(id);
-                UserViewModel _user = new UserViewModel();
-
-                _user.userId = user.ObjectId;
-                _user.username = user.Get<string>("username");
-                _user.firstName = user.Get<string>("firstName");
-                _user.lastName = user.Get<string>("lastName");
-                _user.phoneNumber = user.Get<string>("phoneNumber");
-                _user.address = user.Get<string>("address");
-                _user.birthday = user.Get<DateTime>("birthday");
-                _user.email = user.Get<string>("email");
-                _user.isMale = user.Get<bool>("gender");
-                _user.role = user.Get<string>("role");
-
-                return View(_user);
-            }
-            catch (ParseException pe)
-            {
-                ViewBag.Error = "Error getting user " + pe.Message;
-                return View();
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser(string id, FormCollection form)
-        {
-            try
-            {
-                var user = await ParseUser.Query.WhereEqualTo("type", 1).GetAsync(id);
-
-                user.Username = form["username"].ToString();
-                user.Email = form["email"].ToString();
-                user.Password = form["password"].ToString();
-                user["firstName"] = form["firstName"].ToString();
-                user["lastName"] = form["lastName"].ToString();
-                user["phoneNumber"] = form["phoneNumber"].ToString();
-                user["address"] = form["address"].ToString();
-                user["birthday"] = DateTime.Parse(form["birthday"].ToString());
-                user["gender"] = bool.Parse(form["isMale"]);
-                user["role"] = form["role"].ToString();
-
-                await user.SaveAsync();
-                return RedirectToAction("UserList");
-            }
-            catch (ParseException pe)
-            {
-                ViewBag.Error = "Error submitting user " + pe.Message;
                 return View();
             }
         }

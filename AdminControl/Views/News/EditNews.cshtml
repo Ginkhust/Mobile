@@ -11,7 +11,8 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
             <div class="hpanel hgreen">
                 <div class="panel-heading hbuilt">
                     <div class="panel-tools">
@@ -38,11 +39,17 @@
                         </div>
                         <br />
                         <br />
-                        <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("NewsList", "News")" class="btn-block btn btn-lg btn-info">COME BACK</a>
+                        </div>
                     }
                 </div>
             </div>
         </div>
+        <div class="col-lg-1"></div>
     </div>
 </div>
 @section scripts{

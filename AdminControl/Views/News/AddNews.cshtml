@@ -12,13 +12,14 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
             <div class="hpanel hgreen">
-                <div class="panel-heading hbuilt">
+                <div class="panel-heading">
                     <div class="panel-tools">
                         <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                     </div>
-                    Add News Daily
+                    <h3 style="font-weight:bold">Add News Daily</h3>
                 </div>
                 <div class="panel-body">
                     @using (Html.BeginForm("AddNews", "News", FormMethod.Post))
@@ -33,21 +34,43 @@
                            @class = "form-control"
                        })
                         </div>
-                        <div id="img">
-                            <label class="control-label">Thumbnail Image</label>
-                            @Html.TextAreaFor(n => n.imageUrl, new { @class = "form-control" })
+                        <label>Thumbnail Image</label>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(n => n.imageUrl, new { @class = "form-control", id = "txtImg" })
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-block btn-success" id="btnBrowse">Browse</a>
+                            </div>
                         </div>
                         <br />
                         <br />
-                        <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-block btn-lg btn-success">SUBMIT</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("NewsList", "News")" class="btn-block btn btn-lg btn-info">COME BACK</a>
+                        </div>
                     }
                 </div>
             </div>
         </div>
+        <div class="col-lg-1"></div>
     </div>
 </div>
 @section scripts{
     @Scripts.Render("~/Scripts/summernote",
-                    "~/Scripts/convert.js", "~/Scripts/convert2.js")
+                    "~/Scripts/convert.js")
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script>
+        $('#btnBrowse').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImg').val(url);
+            }
+            finder.popup();
+        })
+    </script>
 }
 

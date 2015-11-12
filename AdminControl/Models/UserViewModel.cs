@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Parse;
 using System.ComponentModel.DataAnnotations;
 
 namespace AdminControl.Models
 {
     public class UserViewModel
     {
+        public UserViewModel() { }
+
         public string userId { get; set; }
 
         [Required]
@@ -29,7 +32,7 @@ namespace AdminControl.Models
         public string address { get; set; }
 
         [Required]
-        public bool isMale { get; set; }
+        public string gender { get; set; }
         public DateTime birthday { get; set; }
         public string role { get; set; }
     }
@@ -53,11 +56,4 @@ namespace AdminControl.Models
         public string role { get; set; }
     }
 
-    public enum UserType
-    {
-        Admin,
-        Manager,
-        Shipper,
-        Customer
-    }
 }

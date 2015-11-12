@@ -16,10 +16,12 @@ namespace AdminControl.Models
             title = p.Get<string>("title");
             content = p.Get<string>("content");
             imageUrl = p.Get<string>("imageUrl");
+            createdAt = p.CreatedAt;
         }
         public string newsId { get; set; }
         public string title { get; set; }
         public string content { get; set; }
         public string imageUrl { get; set; }
+        public DateTime? createdAt { get; set; }
     }
 }

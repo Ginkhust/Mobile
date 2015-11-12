@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AdminControl.Models.ProductSpecificationModel
+
+<div class="content animate-panel">
+    <div class="row">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-10 animated-panel zoomIn" style="animation-delay: 0.1s;">
+            <div class="hpanel hblue">
+                <div class="panel-heading">
+                    <div class="panel-tools">
+                        <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    </div>
+                    <h2><strong>Edit product</strong></h2>
+                </div>
+                @using (Html.BeginForm("EditProduct", "Product", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="panel-body">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--NAME-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Name</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--PRICE-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 ">Price</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.price, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--QUANTITY-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Quantity</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.quantity, new { @class = "form-control", @id = "demo2" })
+                                    </div>
+                                </div>
+
+                                <!--MANUFACTURE-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Manufacture</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.manufacture, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--SALE PRICE-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Sale Price</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.salePrice, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+
+                                <!--OLD PRICE-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Old Price</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProductModel.oldPrice, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="panel-body" style="margin-top: 40px">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!--SCREEN-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Screen</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.screen, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--FRONT CAMERA-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Front Camera</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.frontCamera, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--BACK CAMERA-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Back Camera</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.backCamera, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--OS-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">OS</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.os, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--CHIPSET-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Chipset</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.chipset, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--CPU-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">CPU</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.cpu, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--RAM-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">RAM</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.ram, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--ROM-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">ROM</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.internalStorage, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--SDCARD-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">SD Card</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.sdcard, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--SIM-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">SIM</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.simNumber, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--BATERY-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Batery</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.batery, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!--CONNECTION PORT-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Connection Port</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.Specification.connection, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <!--THUMBNAIL-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Thumbnail Image</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(m => m.ProductModel.thumbnailImage, new { @class = "form-control", id = "txtImg1" })
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-block btn-info" id="btnBrowse1">...</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <!--SMALL SLIDE IMAGE-->
+                                <div class="form-group">
+                                    <label class="col-sm-3">Small Slide</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(m => m.ProductModel.smallSlideImage, new { @class = "form-control", id = "txtImg2" })
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-block btn-info" id="btnBrowse2">...</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-block btn-success">SUBMIT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+@section scripts {
+
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script>
+        $('#btnBrowse1').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImg1').val(url);
+            }
+            finder.popup();
+        })
+
+        $('#btnBrowse2').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImg2').val(url);
+            }
+            finder.popup();
+        })
+
+    </script>
+}
+

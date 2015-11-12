@@ -5,7 +5,7 @@ using AdminControl.App_Start;
 namespace AdminControl.Controllers
 {
     
-    public class DashBoardController : BaseController
+    public class DashBoardController : Controller
     {
         // GET: DashBoard Admin
         [Authorize(Roles = "Admin")]

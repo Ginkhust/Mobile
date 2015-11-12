@@ -14,7 +14,7 @@
     @RenderSection("head", required: false)
 </head>
 
-<body>
+<body class="fixed-sidebar fixed-navbar">
     <!-- Simple splash screen-->
     <div class="splash">
         <div class="color-line"></div>
@@ -39,11 +39,7 @@
             <div class="small-logo">
                 <span class="text-primary">Administrator</span>
             </div>
-            <form role="search" class="navbar-form-custom" method="post" action="#">
-                <div class="form-group">
-                    <input type="text" placeholder="Search something special" class="form-control" name="search">
-                </div>
-            </form>
+            
             <div class="navbar-right">
                 <ul class="nav navbar-nav no-borders">
                     <li class="dropdown">
@@ -165,7 +161,7 @@
     <aside id="menu">
         <div id="navigation">
             <div class="profile-picture">
-                <a href="index-2.html">
+                <a href="@Url.Action("Profiles", "Account")">
                     <img src="~/Images/user-img.png" class="img-circle m-b" alt="logo">
                 </a>
                 <div class="stats-label text-color">
@@ -175,8 +171,7 @@
                             <small class="text-muted">Founder of App <b class="caret"></b></small>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="@Url.Action("Profiles", "Account")">Profile</a></li>
                             <li><a href="analytics.html">Analytics</a></li>
                             <li class="divider"></li>
                             <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
@@ -205,9 +200,8 @@
                 <li>
                     <a href="#"><span class="nav-label">Manage Products</span><span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level">
-                        <li>@Html.ActionLink("Add Product", "AddProduct", "Products")</li>
-                        <li>@Html.ActionLink("Edit Product", "EditProduct", "Products")</li>
-                        <li>@Html.ActionLink("Products List", "ProductsList", "Products")</li>
+                        <li>@Html.ActionLink("Add Product", "AddProduct", "Product")</li>
+                        <li>@Html.ActionLink("Products List", "ProductList", "Product")</li>
                     </ul>
                 </li>
 
@@ -250,12 +244,6 @@
     <div id="wrapper">
         @RenderBody()
 
-        <!-- Footer-->
-        <footer class="footer">
-            <span class="pull-right">
-                Example text
-            </span> Company 2015-2020
-        </footer>
     </div>
 
     <!-- Vendor scripts -->

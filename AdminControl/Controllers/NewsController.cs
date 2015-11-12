@@ -7,12 +7,11 @@ using System.Web.Mvc;
 using AdminControl.Models;
 using System.Threading.Tasks;
 using System.Web.Security;
-using AdminControl.App_Start;
 
 namespace AdminControl.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class NewsController : BaseController
+    public class NewsController : Controller
     {
         public async Task<ActionResult> NewsList()
         {
@@ -63,12 +62,12 @@ namespace AdminControl.Controllers
             }
         }
 
-        [HttpGet]
         public async Task<ActionResult> EditNews(string id)
         {
             try
             {
-                var news = await ParseObject.GetQuery("News").GetAsync(id);
+                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
+                ParseObject news = await query.GetAsync(id);
 
                 NewsViewModel _news = new NewsViewModel(news);
 
@@ -85,7 +84,8 @@ namespace AdminControl.Controllers
         {
             try
             {
-                var news = await ParseObject.GetQuery("News").GetAsync(id);
+                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
+                ParseObject news = await query.GetAsync(n.newsId);
 
                 news["title"] = n.title;
                 news["content"] = n.content;
@@ -104,7 +104,8 @@ namespace AdminControl.Controllers
         {
             try
             {
-                var news = await ParseObject.GetQuery("News").GetAsync(id);
+                ParseQuery<ParseObject> query = ParseObject.GetQuery("News");
+                ParseObject news = await query.GetAsync(id);
 
                 await news.DeleteAsync();
                 return RedirectToAction("NewsList");

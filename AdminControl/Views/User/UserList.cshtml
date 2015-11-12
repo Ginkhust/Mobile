@@ -18,7 +18,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table cellpadding="1" cellspacing="1" class="table">
+                        <table cellpadding="1" cellspacing="1" class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -42,9 +42,8 @@
                                         <td>@uvm.email</td>
                                         <td>@uvm.phoneNumber</td>
                                         <td>@uvm.address</td>
-                                        <td>@(uvm.isMale ? "Male" : "Female")</td>
+                                        <td><h5><span class="label label-info">@uvm.gender</span></h5></td>
                                         <td>@uvm.birthday</td>
-                                        <td><a href="@Url.Action("EditUser", "User", new { id = uvm.userId })" class="btn btn-block btn-sm btn-success"><i class="fa fa-edit"></i>&nbsp;EDIT</a></td>
                                         <td><a href="@Url.Action("DeleteUser", "User", new { id = uvm.userId })" class="btn btn-block btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;DELETE</a></td>
                                     </tr>
                                 }

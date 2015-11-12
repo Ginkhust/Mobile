@@ -42,3 +42,5 @@ C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\b
 C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\bin\Newtonsoft.Json.xml
 C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\bin\System.Web.Optimization.xml
 C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\obj\Debug\AdminControl.csprojResolveAssemblyReference.cache
+C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\bin\CKFinder.dll
+C:\Users\ginks\Documents\Visual Studio 2015\Projects\AdminControl\AdminControl\bin\CKFinder.pdb

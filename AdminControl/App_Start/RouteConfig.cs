@@ -49,6 +49,11 @@ namespace AdminControl
                 defaults: new { controller = "Product", action = "ProductList", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Order",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

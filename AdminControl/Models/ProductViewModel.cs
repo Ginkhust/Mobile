@@ -18,8 +18,8 @@ namespace AdminControl.Models
         public float salePrice { get; set; }
         public float oldPrice { get; set; }
         public string thumbnailImage { get; set; }
-        public IList<string> smallSlideImage { get; set; }
-        public IList<string> largeSlideImage { get; set; }
+        public IEnumerable<string> smallSlideImage { get; set; }
+        public IEnumerable<string> largeSlideImage { get; set; }
 
         public Specification specification;
 
@@ -59,8 +59,11 @@ namespace AdminControl.Models
             salePrice = po.Get<float>("salePrice");
             oldPrice = po.Get<float>("oldPrice");
             thumbnailImage = po.Get<string>("thumbnailImage");
-            smallSlideImage = po.Get<IList<string>>("smallSlideImage");
-            largeSlideImage = po.Get<IList<string>>("largeSlideImage");
+            var smallSlideImage = po.Get<IList<object>>("smallSlideImage");
+            this.smallSlideImage = smallSlideImage.Cast<string>();
+
+            var largeSlideImage = po.Get<IList<object>>("largeSlideImage");
+            this.largeSlideImage = largeSlideImage.Cast<string>();
         }
     }
 
@@ -123,5 +126,11 @@ namespace AdminControl.Models
 
         [Required(AllowEmptyStrings = true)]
         public string connection { get; set; }
+    }
+
+    public class ProductSpecificationModel
+    {
+        public ProductViewModel ProductModel { get; set; }
+        public Specification Specification { get; set; }
     }
 }
